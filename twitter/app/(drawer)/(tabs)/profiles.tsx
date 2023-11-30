@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       alignItems: 'stretch',
-      paddingTop: 40, 
       justifyContent: 'flex-start',
       backgroundColor: '#f5f5f5', // Light grey background
     }

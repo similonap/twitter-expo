@@ -1,8 +1,8 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useContext } from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
-import TweetList from "../../components/TweetList";
-import { DataContext } from "../../components/DataProvider";
+import TweetList from "../components/TweetList";
+import { DataContext } from "../components/DataProvider";
 
 export default function PostDetail() {
   const { loading, loadData, tweets, profiles } = useContext(DataContext);
@@ -16,6 +16,7 @@ export default function PostDetail() {
     <View style={{ flexDirection: "column", flex: 1 }}>
       <Stack.Screen
         options={{
+          headerTransparent: true,
           title: profileData?.name,
         }}
       />
