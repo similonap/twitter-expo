@@ -1,15 +1,18 @@
 import { Stack } from 'expo-router';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { Profile, Tweet } from '../types';
 import Drawer from 'expo-router/drawer';
-import DataProvider from '../components/DataProvider';
+import DataProvider, { DataContext } from '../components/DataProvider';
 
+function StackLayout() {
+  const { darkMode } = useContext(DataContext);
 
-export default function Layout() {
   return (
-    <DataProvider>
-      <Stack
+    <Stack
         screenOptions={{
+          contentStyle: {
+            backgroundColor: darkMode ? "black" : "#f5f5f5"
+          },
           headerTintColor: "white",
           animation: "slide_from_right"
         }}
@@ -22,6 +25,14 @@ export default function Layout() {
           }}
         />
       </Stack>
+  )
+}
+
+export default function Layout() {
+
+  return (
+    <DataProvider>
+        <StackLayout/>
     </DataProvider>
   );
 }

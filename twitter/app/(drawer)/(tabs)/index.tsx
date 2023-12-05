@@ -4,12 +4,12 @@ import TweetList from '../../../components/TweetList';
 import { DataContext } from '../../../components/DataProvider';
 
 export default function Home() {
-  const { loading, loadData, tweets } = useContext(DataContext);
+  const { loading, loadData, tweets, darkMode } = useContext(DataContext);
   const [filter, setFilter] = useState<string>("");
   const filteredData = tweets.filter(tweet => tweet.text.toUpperCase().includes(filter.toUpperCase()) || tweet.handle.toUpperCase().includes(filter.toUpperCase()))
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor : darkMode ? "black" : "#f5f5f5"}]}>
       <View>
        <TextInput
                 secureTextEntry={false}
@@ -18,7 +18,8 @@ export default function Home() {
                 keyboardType="default"
                 value={filter}
                 onChangeText={setFilter}
-                style={styles.filter}
+                placeholderTextColor={darkMode ? "#5A5A5A" : "#DBDBDB"}
+                style={[styles.filter, { backgroundColor : darkMode ? "black" : "white", borderColor: darkMode ? "#444" : "white", color: darkMode ? "white" : "black"}]}
             />
             </View>
             
@@ -43,6 +44,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
-    backgroundColor: '#f5f5f5', // Light grey background
   }
 });

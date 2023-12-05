@@ -5,7 +5,7 @@ import TweetList from "../components/TweetList";
 import { DataContext } from "../components/DataProvider";
 
 export default function PostDetail() {
-  const { loading, loadData, tweets, profiles } = useContext(DataContext);
+  const { loading, loadData, tweets, profiles, darkMode } = useContext(DataContext);
   const { handle } = useLocalSearchParams<{ handle: string }>();
 
   const profileData = profiles.find(p => p.handle === handle);
@@ -24,11 +24,11 @@ export default function PostDetail() {
         <Image source={{ uri: profileData?.banner }} style={{ height: 300 }} />
       </View>
 
-      <View style={{ marginTop: 0, marginLeft: 130, margin: 10 }}>
-        <Text style={{ fontSize: 24, fontWeight: "900" }}>{profileData?.name}</Text>
-        <Text style={{ fontSize: 16, fontWeight: "200" }}>@{profileData?.handle}</Text>
+      <View style={{ marginLeft: 130, marginTop: 10, marginBottom: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: "900", color: darkMode ? "white" : "black" }}>{profileData?.name}</Text>
+        <Text style={{ fontSize: 16, fontWeight: "200",color: darkMode ? "white" : "black" }}>@{profileData?.handle}</Text>
       </View>
-      <Text style={{fontSize: 16, marginTop: 10, marginBottom: 5, marginHorizontal: 17}}>{profileData?.bio}</Text>
+      <Text style={{fontSize: 16, marginTop: 10, marginBottom: 5, marginHorizontal: 17, color: darkMode ? "white" : "black"}}>{profileData?.bio}</Text>
       <Image source={{ uri: profileData?.avatar }} style={{ height: 100, width: 100, position: "absolute", top: 270, left: 10, borderRadius: 100, borderWidth: 1, borderColor: "black" }} />
 
 

@@ -1,11 +1,22 @@
 import { Tabs } from "expo-router";
 import { AntDesign } from '@expo/vector-icons'; 
+import { useContext } from "react";
+import { DataContext } from "../../../components/DataProvider";
 
 
 export default function Layout() {
+  const { darkMode } = useContext(DataContext);
+
   return (
     <Tabs screenOptions={{
-      headerShown: false
+      headerShown: false,
+      tabBarStyle: {
+        backgroundColor: darkMode ? "black" : "white"
+      },
+      tabBarActiveTintColor: darkMode ? "white" : "#1D9BF0",
+      headerStyle: {
+        backgroundColor: darkMode ? "black" : "white"
+      }
     }}>
       <Tabs.Screen name="index" options={{ 
         title: "Home",  

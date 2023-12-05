@@ -5,7 +5,7 @@ import { Profile, Tweet } from "../types";
 import { DataContext } from "./DataProvider";
 
 export default function ProfileList() {
-    const { profiles, loadData, loading } = useContext(DataContext);
+    const { profiles, loadData, loading, darkMode } = useContext(DataContext);
 
     return (
         <FlatList
@@ -22,16 +22,17 @@ export default function ProfileList() {
 
 
 const ProfileView = ({ profile }: { profile: Profile }) => {
+    const { darkMode } = useContext(DataContext);
 
     const router = useRouter();
     return (
-        <View style={styles.postContainer}>
+        <View style={[styles.postContainer, {backgroundColor : darkMode ? "#3b3b3b" : "white", borderColor: darkMode ? "#444" : "#ddd"}]}>
             <Pressable onPress={() => router.push("/" + profile.handle)}>
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                     <Image style={{ marginRight: 10, width: 50, height: 50, borderRadius: 100 }} source={{ uri: profile.avatar }} />
                     <View style={{ flexDirection: "column" }}>
-                        <Text style={styles.name}>{profile?.name}</Text>
-                        <Text style={styles.handle}>@{profile?.handle}</Text>
+                        <Text style={[styles.name, {color: darkMode? "white" : "black"}]}>{profile?.name}</Text>
+                        <Text style={[styles.handle, {color: darkMode? "white" : "black"}]}>@{profile?.handle}</Text>
                     </View>
                 </View>
             </Pressable>

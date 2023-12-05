@@ -4,10 +4,10 @@ import { DataContext } from "../../../components/DataProvider";
 import ProfileList from "../../../components/ProfileList";
 
 export default function Profiles() {
-    const { loading, loadData, profiles } = useContext(DataContext);
+    const { loading, loadData, profiles, darkMode } = useContext(DataContext);
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor : darkMode ? "black" : "#f5f5f5"}]}>
             <ProfileList/>
         </View>
     )
@@ -29,6 +29,5 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       alignItems: 'stretch',
       justifyContent: 'flex-start',
-      backgroundColor: '#f5f5f5', // Light grey background
     }
   });
